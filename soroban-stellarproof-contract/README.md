@@ -1,22 +1,60 @@
-# Soroban Project
+# Privacy-Preserving Identity Contract (Soroban)
 
-## Project Structure
+## 📌 Overview
 
-This repository uses the recommended structure for a Soroban project:
+This contract implements a **privacy-preserving identity verification system** on the Stellar using Soroban.
 
-```text
-.
-├── contracts
-│   └── hello_world
-│       ├── src
-│       │   ├── lib.rs
-│       │   └── test.rs
-│       └── Cargo.toml
-├── Cargo.toml
-└── README.md
+It allows users to:
+
+* Register a **hashed identity commitment**
+* Prove properties about their identity (e.g., age, nationality)
+* Without revealing sensitive personal data
+
+---
+
+## 🧠 Design Philosophy
+
+Instead of storing raw identity data on-chain, this system uses:
+
+* **Commitments (hashes)** → represent identity
+* **Zero-Knowledge Proofs (ZKPs)** → prove claims privately
+* **Off-chain verification** → reduce on-chain complexity
+* **Signature validation** → ensure integrity of verified proofs
+
+---
+
+## 🏗️ Architecture
+
+### Components
+
+| Layer    | Responsibility                                   |
+| -------- | ------------------------------------------------ |
+| Circuit  | Generates ZK proofs from private identity data   |
+| Backend  | Verifies documents + generates & verifies proofs |
+| Contract | Stores commitments + verifies signed claims      |
+
+---
+
+##  Identity Model
+
+Each identity is normalized into:
+
+```
+name
+unique_number
+dob
+state
+country
+doc_type
+secret
 ```
 
-- New Soroban contracts can be put in `contracts`, each in their own directory. There is already a `hello_world` contract in there to get you started.
-- If you initialized this project with any other example contracts via `--with-example`, those contracts will be in the `contracts` directory as well.
-- Contracts should have their own `Cargo.toml` files that rely on the top-level `Cargo.toml` workspace for their dependencies.
-- Frontend libraries can be added to the top-level directory as well. If you initialized this project with a frontend template via `--frontend-template` you will have those files already included.
+A commitment is generated:
+
+```
+identity_hash = Poseidon(...)
+```
+
+Only `identity_hash` is stored on-chain.
+
+---
