@@ -1,5 +1,5 @@
 
-# 🧾 IdentityContract — ZK Identity Verification (Soroban)
+#  IdentityContract — ZK Identity Verification (Soroban)
 
 A Soroban smart contract that verifies zero-knowledge identity claims generated off-chain using a Noir circuit.
 
@@ -24,16 +24,16 @@ Only the proof and public inputs are verified on-chain.
 
 #  Key Features
 
-- 🔐 Zero-knowledge identity verification
-- 🧾 Commitment-based identity storage
-- 🔁 Replay protection using nullifiers
-- 🏷 Condition-based claims (e.g. age gating)
-- 🧑‍💻 Backend-signed authorization support
-- ⚡ Designed for Soroban smart contracts
+-  Zero-knowledge identity verification
+-  Commitment-based identity storage
+-  Replay protection using nullifiers
+-  Condition-based claims (e.g. age gating)
+-  signed authorization support
+-  Designed for Soroban smart contracts
 
 ---
 
-# 📦 Storage Layout
+#  Storage Layout
 
 ## Identity Commitment
 
@@ -222,6 +222,6 @@ On-chain verification result
 
 ---
 
-# 📄 License
+#  License
 
 MIT 
